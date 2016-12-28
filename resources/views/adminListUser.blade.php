@@ -1,8 +1,5 @@
 @extends('layouts.mainsame')
 @section('title', 'Shop | E-Shopper')
-@section('admin')
-    @include('Menu.AdminMenu')
-@endsection
 @section('content')
     <div id="body">
 
