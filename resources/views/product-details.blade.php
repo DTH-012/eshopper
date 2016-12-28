@@ -125,10 +125,11 @@
                                                 </script>
                                         </ul>
                                         <p>
-                                        <p><div  class="alert alert-success">
-                                            aaaaaaaaaaaaaa
-                                        </div><b></b></p>
-
+                                        @if(Session::has('flash_mesage'))
+                                            <div  class="alert alert-info">
+                                                {!! Session::get('flash_mesage') !!}
+                                            </div>
+                                        @endif
                                         <p><b>Đánh giá của bạn</b></p>
 
                                         <form action="#" method="post">
