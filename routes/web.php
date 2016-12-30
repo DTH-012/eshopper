@@ -68,26 +68,20 @@ Route::get('noti',['as'=>'getNoti','uses'=>'AdminUserController@getNoti']);
 Route::get('deleteuser/{username}',['as'=>'getDeleteUser','uses'=>'AdminUserController@getDelete']);
 Route::get('edituser-{username}',['as'=>'getEditUser','uses'=>'AdminUserController@getEdit']);
 Route::post('edituser-{username}',['as'=>'postEditUser','uses'=>'AdminUserController@postEdit']);
-Route::get('admin/index',function () {
-    return view('admin.index');
-});
 
-Route::get('test',function () {
-    return view('admin.index');
-});
+
+Route::get('test','AdminProductController@admin');
 Auth::routes();
 
 Route::get('reset', function () {
     return view('auth.passwords.reset');
 });
+Route::get('edit-account-{id}',['as'=>'getEditAccount','uses'=>'AccountController@getEdit']);
+Route::post('edit-account-{id}',['as'=>'postEditAccount','uses'=> 'AccountController@postEdit']);
 
 Route::group(['prefix'=>'admin'],function (){
-    Route::get('/', function () {
-        return view('admin.index');
-    });
-    Route::get('index', function () {
-        return view('admin.index');
-    });
+    Route::get('/', 'AdminProductController@admin');
+    Route::get('index','AdminProductController@admin');
     Route::get('listproduct',['as'=>'getList','uses'=>'AdminProductController@getList']);
     Route::get('addproduct',['as'=>'getaddproduct','uses'=>'AdminProductController@getAdd']);
     Route::post('addproduct',['as'=>'postaddproduct','uses'=>'AdminProductController@postAdd']);

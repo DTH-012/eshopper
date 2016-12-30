@@ -54,7 +54,7 @@
                                         </form>
                                     </li>
                                     <li class="col-sm-12">
-                                        <a href="#">
+                                        <a href="edit-account-{{Auth::user()->id}}">
                                         Edit
                                         </a>
                                     </li>

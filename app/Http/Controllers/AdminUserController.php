@@ -10,6 +10,10 @@ use DB;
 
 class AdminUserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function getList()
     {
         $user = DB::table('users')
