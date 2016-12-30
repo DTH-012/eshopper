@@ -1,11 +1,8 @@
-@extends('layouts.mainsame')
-@section('title', 'Shop | E-Shopper')
+@extends('admin.layouts.adminmainsame')
+@section('title', 'Danh sách users')
+@section('headername', 'Danh sách users')
+@section('breadcrumbname', 'Danh sách users')
 @section('content')
-    <div id="body">
-
-        <section>
-            <div class="container">
-                <div class="row">
                     @if(Session::has('flash_mesage'))
                         <div  class="alert alert-success">
                             {!! Session::get('flash_mesage') !!}
@@ -35,8 +32,4 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </section>
-    </div>
 @endsection

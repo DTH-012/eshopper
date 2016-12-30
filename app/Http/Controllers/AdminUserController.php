@@ -15,7 +15,7 @@ class AdminUserController extends Controller
         $user = DB::table('users')
             ->orderby('id','ASC')
             ->get();
-        return view('adminListUser',['users'=>$user]);
+        return view('admin.listuser',['users'=>$user]);
     }
     public function getAdd()
     {
@@ -67,7 +67,7 @@ class AdminUserController extends Controller
         $user= DB::table('users')
             ->where('users.id', '=', $iduser)
             ->get();
-        return view('adminEditUser',['users'=>$user]);
+        return view('admin.edituser',['users'=>$user]);
     }
     public function postEdit(EditUserRequest $request,$iduser)
     {

@@ -68,12 +68,34 @@ Route::get('noti',['as'=>'getNoti','uses'=>'AdminUserController@getNoti']);
 Route::get('deleteuser/{username}',['as'=>'getDeleteUser','uses'=>'AdminUserController@getDelete']);
 Route::get('edituser-{username}',['as'=>'getEditUser','uses'=>'AdminUserController@getEdit']);
 Route::post('edituser-{username}',['as'=>'postEditUser','uses'=>'AdminUserController@postEdit']);
-Route::get('/admin','AdminProductController@admin');
+Route::get('admin/index',function () {
+    return view('admin.index');
+});
 
-Route::get('/test','HomeController@index' );
-
+Route::get('test',function () {
+    return view('admin.index');
+});
 Auth::routes();
 
 Route::get('reset', function () {
     return view('auth.passwords.reset');
+});
+
+Route::group(['prefix'=>'admin'],function (){
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+    Route::get('index', function () {
+        return view('admin.index');
+    });
+    Route::get('listproduct',['as'=>'getList','uses'=>'AdminProductController@getList']);
+    Route::get('addproduct',['as'=>'getaddproduct','uses'=>'AdminProductController@getAdd']);
+    Route::post('addproduct',['as'=>'postaddproduct','uses'=>'AdminProductController@postAdd']);
+    Route::get('deleteproduct/{idproduct}',['as'=>'getDelete','uses'=>'AdminProductController@getDelete']);
+    Route::get('editproduct-{idproduct}',['as'=>'getEdit','uses'=>'AdminProductController@getEdit']);
+    Route::post('editproduct-{idproduct}',['as'=>'postEdit','uses'=>'AdminProductController@postEdit']);
+    Route::get('listuser',['as'=>'getListUser','uses'=>'AdminUserController@getList']);
+    Route::get('deleteuser/{username}',['as'=>'getDeleteUser','uses'=>'AdminUserController@getDelete']);
+    Route::get('edituser-{username}',['as'=>'getEditUser','uses'=>'AdminUserController@getEdit']);
+    Route::post('edituser-{username}',['as'=>'postEditUser','uses'=>'AdminUserController@postEdit']);
 });

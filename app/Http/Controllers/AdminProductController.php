@@ -19,13 +19,13 @@ class AdminProductController extends Controller
             ->join ('brands','products.Brand','brands.idBRANDS')
             ->orderby('idProducts','ASC')
             ->get();
-        return view('adminlistproduct',['products'=>$product]);
+        return view('admin.listproduct',['products'=>$product]);
     }
     public function getAdd()
     {
         $cat = DB::select('select * from category');
         $brand = DB::select("SELECT * FROM eshop.brands;");
-        return view('addproduct', ['cats' => $cat, 'brands'=>$brand]);
+        return view('admin.addproduct', ['cats' => $cat, 'brands'=>$brand]);
     }
     public function postAdd(ProcRequest $request)
     {
@@ -67,7 +67,7 @@ class AdminProductController extends Controller
             ->join ('brands','products.Brand','brands.idBRANDS')
             ->where('products.idProducts', '=', $id)
             ->get();
-        return view('admineditproduct', ['cats' => $cat, 'brands'=>$brand,'products'=>$idproduct,'theods'=>$product]);
+        return view('admin.editproduct', ['cats' => $cat, 'brands'=>$brand,'products'=>$idproduct,'theods'=>$product]);
     }
     public function postEdit(Request $request,$id){
         $this->validate($request,
@@ -101,6 +101,6 @@ class AdminProductController extends Controller
     }
     public function admin()
     {
-        return view('admin');
+        return view('admin.index');
     }
 }
