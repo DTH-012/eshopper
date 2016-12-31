@@ -17,12 +17,25 @@ class AccountController extends Controller
     }
     public function getEdit($id)
     {
+        if(Auth::user()->id != $id)
+        {
+            return redirect('/');
+        }
         $acc= DB::table('users')
             ->where('users.id', '=', $id)
             ->get();
         return view('editAccount', ['info'=>$acc]);
     }
     public function postEdit(EditAccountRequest $request,$id){
+        DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'email' => ''
+            ]);
+        $this->validate($request,
+            ['txtEmail' => 'unique:users,email'],
+            ['txtEmail.unique'=> 'Email đã tồn tại']
+        );
         $data = $request->all();
         $user = User::find($id);
         if(!Hash::check($data['txtOldPassword'], $user->password)){
@@ -32,13 +45,13 @@ class AccountController extends Controller
         else{
             $name=$request->txtname;
             $password=Hash::make($request->txtPassword);
-            $emal=$request->txtEmail;
+            $email=$request->txtEmail;
             $level=$user->level;
             $token=$request->_token;
             DB::table('users')
                 ->where('id', $id)
                 ->update([
-                    'name' => $name,'password'=>$password, 'email' => $emal, 'level' => $level,'remember_token'=>$token
+                    'name' => $name,'password'=>$password, 'email' => $email, 'level' => $level,'remember_token'=>$token
                 ]);
             return redirect()->back()->with(['flash_mesage'=>'Cập nhật thành công']);
         }

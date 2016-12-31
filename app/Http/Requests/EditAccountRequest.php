@@ -39,6 +39,7 @@ class EditAccountRequest extends FormRequest
         return [
             'txtname.required' => 'Vui lòng nhập họ tên',
             'txtEmail.required' => 'Vui lòng nhập Email',
+            'txtEmail.unique' => 'Email đã tồn tại',
             'txtOldPassword.required' => 'Vui lòng nhập mật khẩu cũ',
             'txtPassword.required' => 'Vui lòng nhập mật khẩu mới',
             'txtPassword.different' => 'Mật khẩu mới phải khác mật khẩu cũ',

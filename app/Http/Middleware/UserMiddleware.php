@@ -16,7 +16,8 @@ class UserMiddleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check() &&( Auth::user()->level==0 || Auth::user()->level==1)) {
+
+        if (Auth::guard($guard)->check()) {
             return $next($request);
         }else{
             return redirect('/');
