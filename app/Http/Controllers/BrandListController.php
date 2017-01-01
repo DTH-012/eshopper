@@ -9,8 +9,8 @@ class BrandListController extends Controller
     public function brandlist($idBrand)
     {
         $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM eshop.brands;");
-        $productname = DB::select("SELECT * FROM eshop.products;");
+        $brand = DB::select("SELECT * FROM brands;");
+        $productname = DB::select("SELECT * FROM products;");
         $product = DB::table('products')
             ->join ('brands','products.Brand','brands.idBRANDS')
             ->where ('Brand', '=', $idBrand)

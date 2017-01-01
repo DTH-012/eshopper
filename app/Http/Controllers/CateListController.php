@@ -9,8 +9,8 @@ class CateListController extends Controller
     public function catlist($idLoai)
     {
         $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM eshop.brands;");
-        $productname = DB::select("SELECT * FROM eshop.products;");
+        $brand = DB::select("SELECT * FROM brands;");
+        $productname = DB::select("SELECT * FROM products;");
         $product = DB::table('products')
             ->join ('category','products.Category','category.idCategory')
             ->where ('products.Category', '=', $idLoai)

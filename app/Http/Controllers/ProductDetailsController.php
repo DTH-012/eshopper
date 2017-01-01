@@ -13,9 +13,9 @@ class ProductDetailsController extends Controller
     public function procDetails($idProducts)
     {
         $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM eshop.brands;");
-        $productname = DB::select("SELECT * FROM eshop.products;");
-        $img = DB::select("SELECT * FROM eshop.image Where Product=$idProducts limit 3;");
+        $brand = DB::select("SELECT * FROM brands;");
+        $productname = DB::select("SELECT * FROM products;");
+        $img = DB::select("SELECT * FROM image Where Product=$idProducts limit 3;");
         $product = DB::table('products')
             ->where ('idProducts', $idProducts)
             ->get();
@@ -23,7 +23,7 @@ class ProductDetailsController extends Controller
             ->where ('ID_Product', $idProducts)
             ->orderby('Time','DESC')
             ->paginate(2);
-        $product_related = DB::select("select * from eshop.products where Category in (Select Category From eshop.products Where idProducts=5) and idProducts!=$idProducts ORDER BY RAND() limit 3;");
+        $product_related = DB::select("select * from products where Category in (Select Category From products Where idProducts=5) and idProducts!=$idProducts ORDER BY RAND() limit 3;");
         return view('product-details', ['products' => $product,'cats' => $cat, 'productnames' => $productname,'brands'=>$brand,'Images'=>$img,'products_related'=>$product_related,'comments'=>$comment]);
     }
 

@@ -14,15 +14,15 @@ use DB;
 class CatsBrandsComposer
 {
     public function cat(View $view){
-        $cat = DB::select("SELECT * FROM eshop.category;");
-        $brand = DB::select("SELECT * FROM eshop.brands;");
+        $cat = DB::select("SELECT * FROM category;");
+        $brand = DB::select("SELECT * FROM brands;");
         $view->with(['cats' => $cat,'brands'=>$brand]);
     }
     public function catlist($idLoai)
     {
         $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM eshop.brands;");
-        $productname = DB::select("SELECT * FROM eshop.products;");
+        $brand = DB::select("SELECT * FROM brands;");
+        $productname = DB::select("SELECT * FROM products;");
         $product = DB::table('products')
             ->join ('category','products.Category','category.idCategory')
             ->get();

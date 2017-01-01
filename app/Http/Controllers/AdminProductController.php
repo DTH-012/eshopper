@@ -24,7 +24,7 @@ class AdminProductController extends Controller
     public function getAdd()
     {
         $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM eshop.brands;");
+        $brand = DB::select("SELECT * FROM brands;");
         return view('admin.addproduct', ['cats' => $cat, 'brands'=>$brand]);
     }
     public function postAdd(ProcRequest $request)
@@ -61,7 +61,7 @@ class AdminProductController extends Controller
             ->where('products.idProducts', '=', $id)
             ->get();
         $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM eshop.brands;");
+        $brand = DB::select("SELECT * FROM brands;");
         $product = DB::table('products')
             ->join ('category','products.Category','category.idCategory')
             ->join ('brands','products.Brand','brands.idBRANDS')

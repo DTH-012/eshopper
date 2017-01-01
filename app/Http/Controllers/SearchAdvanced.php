@@ -23,7 +23,7 @@ class SearchController extends Controller
         $product= DB::table('products')
             ->where ('NamePD', 'like', '%'.$q.'%')
             ->get();;
-        //SELECT * FROM eshop.products where NamePd like '%quan%';
+        //SELECT * FROM products where NamePd like '%quan%';
 
         //DB::connection('operator')->table('users')->where('email', 'LIKE', '%test%')->get();
         return view('search',['products' => $product]);
