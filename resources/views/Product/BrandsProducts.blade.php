@@ -11,13 +11,12 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{$productname->Thumbnail}}" alt="" />
-                                    <h2>{{$productname->Price}}</h2>
+                                    <h2>{{$productname->Price}}$</h2>
                                     <p>{{$productname->NamePd}}</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>+ Giỏ Hàng</button>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
-                                        <h2>{{$productname->Price}}</h2>
+                                        <h2>{{$productname->Price}}$</h2>
                                         <p>{{$productname->NamePd}}</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                         <a href="product-details-{{$productname->idProducts}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thông tin chi tiết</a>

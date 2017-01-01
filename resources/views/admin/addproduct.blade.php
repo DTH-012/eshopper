@@ -28,9 +28,6 @@
 									<input class="form-control" type="text" id="txtProcThumbnail" name= "txtProcThumbnail" placeholder="Hình ảnh"/>
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" name= "txtProcPost-er" placeholder="Nhân viên đăng"/>
-								</div>
-								<div class="form-group">
 									<select class="form-control" name="cboProcCat" required>
 										<option value="" disabled selected hidden>Loại sản phẩm</option>
 										@foreach($cats as $cat)

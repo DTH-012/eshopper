@@ -28,9 +28,6 @@
 									<div class="form-group">
 										<input class="form-control" type="text" id="txtProcThumbnail" name= "txtProcThumbnail" placeholder="Hình ảnh" value="{!! old('txtProcThumbnail',isset($product) ? $product->Thumbnail : null) !!}"/>
 									</div>
-									<div class="form-group">
-										<input class="form-control" type="text" name= "txtProcPost-er" placeholder="Nhân viên đăng"/>
-									</div>
 								@endforeach
 								<div class="form-group">
 									<select class="form-control" name="cboProcCat" required>

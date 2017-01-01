@@ -29,6 +29,8 @@ class SearchController extends Controller
         $proc=$request->input('proc');
         $cat=$request->input('cat');
         $brand=$request->input('brand');
+        $pricemin=$request->input('pricemin');
+        $pricemax=$request->input('pricemax');
         $product= DB::table('products')
             ->join ('category','products.Category','category.idCategory')
             ->join ('brands','products.Brand','brands.idBRANDS')

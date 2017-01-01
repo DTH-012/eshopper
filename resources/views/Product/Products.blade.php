@@ -5,22 +5,16 @@
             <div class="single-products">
                 <div class="productinfo text-center">
                     <img src="{{$product->Thumbnail}}" alt="" />
-                    <h2>{{$product->Price}}</h2>
+                    <h2>{{$product->Price}}$</h2>
                     <p>{{$product->NamePd}}</p>
                 </div>
                 <div class="product-overlay" ;>
                     <div class="overlay-content" ;>
-                        <h2>{{$product->Price}}</h2>
+                        <h2>{{$product->Price}}$</h2>
                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                         <a href="product-details-{{$product->idProducts}}" class="btn btn-default add-to-cart">Thông tin chi tiết</a>
                     </div>
                 </div>
-            </div>
-            <div class="choose">
-                <ul class="nav nav-pills nav-justified">
-                    <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào ưa thích</a></li>
-                    <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
-                </ul>
             </div>
         </div>
     </div>
