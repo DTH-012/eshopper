@@ -22,14 +22,6 @@
 </div>
 <div class="col-sm-12">
     <ul class="pagination">
-        @if($products->currentPage() !=1)
-        <li><a href="{!! $products->url($products->currentPage()-1) !!}"><<</a> </li>
-        @endif
-        @for($i = 1; $i <= $products->lastPage(); $i = $i+1)
-            <li class="{!! ($products->currentPage() == $i) ? "active" : "" !!}"><a href="{!! $products->url($i) !!}">{!! $i !!}</a> </li>
-        @endfor
-        @if($products->currentPage() != $products->lastPage())
-            <li><a href="{!! $products->url($products->currentPage()+1) !!}">>></a> </li>
-        @endif
+        {!! $products->render() !!}
     </ul>
 </div>

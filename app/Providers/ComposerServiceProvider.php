@@ -21,6 +21,9 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             'Product.Products', 'App\Http\ViewComposers\ProductsComposer@product'
         );
+        View::composer(
+            'Product.RecommendedItems', 'App\Http\ViewComposers\RecommendedItemsComposer@product'
+        );
         // Using Closure based composers...
 
     }
