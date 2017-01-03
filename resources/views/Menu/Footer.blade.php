@@ -19,8 +19,7 @@
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2>
+                            <h2>24 DEC 2016</h2>
                         </div>
                     </div>
 
@@ -34,8 +33,7 @@
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2>
+                            <h2>24 DEC 2016</h2>
                         </div>
                     </div>
 
@@ -49,8 +47,7 @@
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2>
+                            <h2>24 DEC 2016</h2>
                         </div>
                     </div>
 
@@ -64,15 +61,14 @@
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2>
+                            <h2>24 DEC 2016</h2>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="address">
                         <img src="images/home/map.png" alt="" />
-                        <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+                        <p>Viet Nam, Thanh Pho Ho Chi Minh</p>
                     </div>
                 </div>
             </div>
@@ -124,7 +120,7 @@
                             <li><a href="#">Thông tin công ty</a></li>
                             <li><a href="#">Thành tích</a></li>
                             <li><a href="#">Đại chỉ chỉ</a></li>
-                            <li><a href="#">CƯơng trình liên kết</a></li>
+                            <li><a href="#">Chương trình liên kết</a></li>
                             <li><a href="#">Copyright</a></li>
                         </ul>
                     </div>
