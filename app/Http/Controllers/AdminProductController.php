@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProcRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\CatRequest;
+use App\Http\Requests\BrandRequest;
 use DB;
 
 class AdminProductController extends Controller
@@ -13,6 +14,7 @@ class AdminProductController extends Controller
     {
         $this->middleware('admin');
     }
+    //Product
     public function getList()
     {
         $product = DB::table('products')
@@ -105,7 +107,7 @@ class AdminProductController extends Controller
         return view('admin.index');
     }
 
-
+    //Category
     public function getListCat()
     {
         $cat = DB::table('category')
@@ -158,5 +160,61 @@ class AdminProductController extends Controller
                'Name' => $name
             ]);
         return redirect()->route('getListCat')->with(['flash_mesage'=>'Sửa thành công']);
+    }
+
+    //Brand
+    public function getListBrand()
+    {
+        $brand = DB::table('brands')
+            ->get();
+        return view('admin.listbrand',['brands'=>$brand]);
+    }
+    public function getAddBrand()
+    {
+        return view('admin.addbrand');
+    }
+    public function postAddBrand(BrandRequest $request){
+        $idBrand=$request->txtBrandID;
+        $nameBrand=$request->txtBrandName;
+        DB::table('brands')->insert([
+            'idBRANDS' => $idBrand,'BRANDName' => $nameBrand
+        ]);
+        return redirect()->route('getListBrand')->with(['flash_mesage'=>'Thêm thành công']);
+    }
+    public function getDeleteBrand($idbrand)
+    {
+        $proc=DB::table('products')
+            ->where('products.Brand','=',$idbrand)
+            ->get();
+        $exists = $proc->first();
+        if($exists != null){
+            return redirect()->route('getListBrand')->with(['flash_mesage'=>'Không được xóa nhà sx đang có sản phẩm']);
+        }
+        else {
+            DB::table('brands')
+                ->where('brands.idBRANDS', '=', $idbrand)
+                ->delete();
+            return redirect()->route('getListBrand')->with(['flash_mesage' => 'Xóa thành công']);
+        }
+    }
+    public function getEditBrand($idbrand)
+    {
+        $brand = DB::table('brands')
+        ->where('idBRANDS','=',$idbrand)
+        ->get();
+        return view('admin.editbrand', ['brands' => $brand]);
+    }
+    public function postEditBrand(Request $request,$idbrand){
+        $this->validate($request,
+            ["txtBrandName" => "required"],
+            ["txtBrandName.required" => "Vui lòng nhập tên nhà sx"]
+        );
+        $name=$request->txtBrandName;
+        DB::table('brands')
+            ->where('brands.idBRANDS', '=', $idbrand)
+            ->update([
+                'BRANDName' => $name
+            ]);
+        return redirect()->route('getListBrand')->with(['flash_mesage'=>'Sửa thành công']);
     }
 }

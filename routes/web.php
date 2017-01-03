@@ -91,10 +91,17 @@ Route::group(['prefix'=>'admin'],function (){
 
     Route::get('listcat',['as'=>'getListCat','uses'=>'AdminProductController@getListCat']);
     Route::get('addcat',['as'=>'getaddcat','uses'=>'AdminProductController@getAddCat']);
-    Route::post('addcat',['as'=>'postaddcatt','uses'=>'AdminProductController@postAddCat']);
+    Route::post('addcat',['as'=>'postaddcat','uses'=>'AdminProductController@postAddCat']);
     Route::get('deletecat/{idcat}',['as'=>'getDeleteCat','uses'=>'AdminProductController@getDeleteCat']);
     Route::get('editcat-{idcat}',['as'=>'getEditCat','uses'=>'AdminProductController@getEditCat']);
     Route::post('editcat-{idcat}',['as'=>'postEditCat','uses'=>'AdminProductController@postEditCat']);
+
+    Route::get('listbrand',['as'=>'getListBrand','uses'=>'AdminProductController@getListBrand']);
+    Route::get('addbrand',['as'=>'getaddbrand','uses'=>'AdminProductController@getAddBrand']);
+    Route::post('addbrand',['as'=>'postaddbrand','uses'=>'AdminProductController@postAddBrand']);
+    Route::get('deletebrand/{idbrand}',['as'=>'getDeleteBrand','uses'=>'AdminProductController@getDeleteBrand']);
+    Route::get('editbrand-{idbrand}',['as'=>'getEditBrand','uses'=>'AdminProductController@getEditBrand']);
+    Route::post('editbrand-{idbrand}',['as'=>'postEditBrand','uses'=>'AdminProductController@postEditBrand']);
 
     Route::get('listuser',['as'=>'getListUser','uses'=>'AdminUserController@getList']);
     Route::get('deleteuser/{username}',['as'=>'getDeleteUser','uses'=>'AdminUserController@getDelete']);

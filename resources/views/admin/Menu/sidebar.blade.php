@@ -52,12 +52,12 @@
             </a>
             <ul class="children collapse" id="4sub-item-1">
                 <li>
-                    <a class="" href="listcat">
+                    <a class="" href="listbrand">
                         Danh sách nhà sản xuất
                     </a>
                 </li>
                 <li>
-                    <a class="" href="addproduct">
+                    <a class="" href="addbrand">
                         Thêm nhà sản xuất
                     </a>
                 </li>
