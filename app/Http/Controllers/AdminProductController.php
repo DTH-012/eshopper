@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProcRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\CatRequest;
 use DB;
 
 class AdminProductController extends Controller
@@ -41,7 +42,7 @@ class AdminProductController extends Controller
         $Cat=$request->cboProcCat;
         $Brand=$request->cboProcBrand;
         DB::table('products')->insert([
-            'idProducts' => $idProducts,'NamePd' => $NamePd, 'Price' => $Price, 'Quantity' => $Quantity, 'DesFull' =>$DesFull, 'Thumbnail' => $Thumbnail, 'NguoiDang' => $NguoiDang, 'Category' => $Cat, 'Brand' => $Brand
+            'idProducts' => $idProducts,'NamePd' => $NamePd, 'Price' => $Price, 'Quantity' => $Quantity, 'DesFull' =>$DesFull, 'Thumbnail' => $Thumbnail, 'Category' => $Cat, 'Brand' => $Brand
         ]);
         DB::table('image')->insert([
             'Link'=>$Thumbnail,'Product'=>$idProducts
@@ -91,7 +92,7 @@ class AdminProductController extends Controller
         DB::table('products')
             ->where('idProducts', $id)
             ->update([
-                'NamePd' => $NamePd, 'Price' => $Price, 'Quantity' => $Quantity, 'DesFull' =>$DesFull, 'Thumbnail' => $Thumbnail, 'NguoiDang' => $NguoiDang, 'Category' => $Cat, 'Brand' => $Brand
+                'NamePd' => $NamePd, 'Price' => $Price, 'Quantity' => $Quantity, 'DesFull' =>$DesFull, 'Thumbnail' => $Thumbnail, 'Category' => $Cat, 'Brand' => $Brand
             ]);
 
         DB::table('image')->insert([
@@ -102,5 +103,60 @@ class AdminProductController extends Controller
     public function admin()
     {
         return view('admin.index');
+    }
+
+
+    public function getListCat()
+    {
+        $cat = DB::table('category')
+            ->get();
+        return view('admin.listcat',['cats'=>$cat]);
+    }
+    public function getAddCat()
+    {
+        return view('admin.addcat');
+    }
+    public function postAddCat(CatRequest $request){
+        $idCat=$request->txtCatID;
+        $nameCat=$request->txtCatName;
+        DB::table('category')->insert([
+            'idCategory' => $idCat,'Name' => $nameCat
+        ]);
+        return redirect()->route('getListCat')->with(['flash_mesage'=>'Thêm thành công']);
+    }
+    public function getDeleteCat($idcat)
+    {
+        $proc=DB::table('products')
+            ->where('products.Category','=',$idcat)
+            ->get();
+        $exists = $proc->first();
+        if($exists != null){
+            return redirect()->route('getListCat')->with(['flash_mesage'=>'Không được xóa loại sản phẩm đang có sản phẩm']);
+        }
+        else {
+            DB::table('category')
+                ->where('category.idCategory', '=', $idcat)
+                ->delete();
+            return redirect()->route('getListCat')->with(['flash_mesage' => 'Xóa thành công']);
+        }
+    }
+    public function getEditCat($id)
+    { $cat = DB::table('category')
+        ->where('idCategory','=',$id)
+        ->get();
+        return view('admin.editcat', ['cats' => $cat]);
+    }
+    public function postEditCat(Request $request,$id){
+        $this->validate($request,
+            ["txtCatName" => "required"],
+            ["txtCatName.required" => "Vui lòng nhập tên loại sàn phẩm"]
+        );
+        $name=$request->txtCatName;
+        DB::table('category')
+            ->where('category.idCategory', '=', $id)
+            ->update([
+               'Name' => $name
+            ]);
+        return redirect()->route('getListCat')->with(['flash_mesage'=>'Sửa thành công']);
     }
 }

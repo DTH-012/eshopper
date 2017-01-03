@@ -88,6 +88,14 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('deleteproduct/{idproduct}',['as'=>'getDelete','uses'=>'AdminProductController@getDelete']);
     Route::get('editproduct-{idproduct}',['as'=>'getEdit','uses'=>'AdminProductController@getEdit']);
     Route::post('editproduct-{idproduct}',['as'=>'postEdit','uses'=>'AdminProductController@postEdit']);
+
+    Route::get('listcat',['as'=>'getListCat','uses'=>'AdminProductController@getListCat']);
+    Route::get('addcat',['as'=>'getaddcat','uses'=>'AdminProductController@getAddCat']);
+    Route::post('addcat',['as'=>'postaddcatt','uses'=>'AdminProductController@postAddCat']);
+    Route::get('deletecat/{idcat}',['as'=>'getDeleteCat','uses'=>'AdminProductController@getDeleteCat']);
+    Route::get('editcat-{idcat}',['as'=>'getEditCat','uses'=>'AdminProductController@getEditCat']);
+    Route::post('editcat-{idcat}',['as'=>'postEditCat','uses'=>'AdminProductController@postEditCat']);
+
     Route::get('listuser',['as'=>'getListUser','uses'=>'AdminUserController@getList']);
     Route::get('deleteuser/{username}',['as'=>'getDeleteUser','uses'=>'AdminUserController@getDelete']);
     Route::get('edituser-{username}',['as'=>'getEditUser','uses'=>'AdminUserController@getEdit']);
