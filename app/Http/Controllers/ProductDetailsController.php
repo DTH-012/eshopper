@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Http\Requests\CommentRequest;
 use Carbon\Carbon;
 use Auth;
-
 use Illuminate\Http\Request;
 use DB;
-
 class ProductDetailsController extends Controller
 {
     public function procDetails($idProducts)
@@ -26,7 +23,6 @@ class ProductDetailsController extends Controller
         $product_related = DB::select("select * from products where Category in (Select Category From products Where idProducts=5) and idProducts!=$idProducts ORDER BY RAND() limit 3;");
         return view('product-details', ['products' => $product, 'productnames' => $productname,'Images'=>$img,'products_related'=>$product_related,'comments'=>$comment]);
     }
-
     //Comment
     public function postComment(CommentRequest $request,$idProducts)
     {
@@ -40,5 +36,4 @@ class ProductDetailsController extends Controller
         ]);
         return redirect()->route('viewDetail',$idProducts)->with(['flash_mesage'=>'Đã gửi phản hồi']);
     }
-
 }

@@ -46,6 +46,34 @@ class AdminProductController extends Controller
         DB::table('image')->insert([
             'Link'=>$Thumbnail,'Product'=>$idProducts
         ]);
+        if($request->hasFile('Bonusfileimg1')){
+            $bonusfileimg1=$request->file('Bonusfileimg1')->getClientOriginalName();
+            $request->file('Bonusfileimg1')->move('img/',$bonusfileimg1);
+            $bonusnameimg1=$request->txtBonusImg1;
+            $img1=DB::table('image')
+                ->where ('Link','=',$bonusnameimg1)
+                ->where ('Product','=',$idProducts)
+                ->get();
+            $exist1=$img1->first();
+            if($exist1==null)
+                DB::table('image')->insert([
+                    'Link'=>$bonusnameimg1,'Product'=>$idProducts
+                ]);
+        }
+        if($request->hasFile('Bonusfileimg2')){
+            $bonusfileimg2=$request->file('Bonusfileimg2')->getClientOriginalName();
+            $request->file('Bonusfileimg2')->move('img/',$bonusfileimg2);
+            $bonusnameimg2=$request->txtBonusImg2;
+            $img2=DB::table('image')
+                ->where ('Link','=',$bonusnameimg2)
+                ->where ('Product','=',$idProducts)
+                ->get();
+            $exist2=$img2->first();
+            if($exist2==null)
+                DB::table('image')->insert([
+                    'Link'=>$bonusnameimg2,'Product'=>$idProducts
+                ]);
+        }
         return redirect()->route('getList')->with(['flash_mesage'=>'Thêm thành công']);
     }
     public function getDelete($idproduct)
