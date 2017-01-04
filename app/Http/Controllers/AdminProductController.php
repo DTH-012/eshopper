@@ -77,12 +77,6 @@ class AdminProductController extends Controller
             ["txtProcName" => "required"],
             ["txtProcName.required" => "Vui lòng nhập tên sàn phẩm"]
         );
-        $this->validate($request,
-            ["fileimg"=>"required"],
-            ["fileimg.required" => "Vui lòng chọn hình ảnh"]
-        );
-        $filename=$request->file('fileimg')->getClientOriginalName();
-        $request->file('fileimg')->move('img/',$filename);
         $NamePd=$request->txtProcName;
         $Price=$request->txtProcPrice;
         $Quantity=$request->txtProcQuantity;
@@ -96,10 +90,18 @@ class AdminProductController extends Controller
             ->update([
                 'NamePd' => $NamePd, 'Price' => $Price, 'Quantity' => $Quantity, 'DesFull' =>$DesFull, 'Thumbnail' => $Thumbnail, 'Category' => $Cat, 'Brand' => $Brand
             ]);
-
-        DB::table('image')->insert([
-            'Link'=>$Thumbnail,'Product'=>$id
-        ]);
+        $img=DB::table('image')
+            ->where ('Link','=',$Thumbnail)
+            ->where ('Product','=',$id)
+            ->get();
+        $exist=$img->first();
+        if($exist== null) {
+            $filename=$request->file('fileimg')->getClientOriginalName();
+            $request->file('fileimg')->move('img/',$filename);
+            DB::table('image')->insert([
+                'Link' => $Thumbnail, 'Product' => $id
+            ]);
+        }
         return redirect()->route('getList')->with(['flash_mesage'=>'Sửa thành công']);
     }
     public function admin()
