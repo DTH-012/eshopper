@@ -27,6 +27,11 @@
                         Danh sách user
                     </a>
                 </li>
+                <li>
+                    <a class="" href="adduser">
+                        Thêm user
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="parent ">

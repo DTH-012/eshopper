@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
@@ -8,7 +7,6 @@ use Illuminate\Http\Request;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use DB;
-
 class AdminUserController extends Controller
 {
     public function __construct()
@@ -77,12 +75,11 @@ class AdminUserController extends Controller
     }
     public function postEdit(EditUserRequest $request,$iduser)
     {
-        $tmpemail=$email=$request->txtUserEmail;
         DB::table('users')
-        ->where('id', $iduser)
-        ->update([
-            'email' => ''
-        ]);
+            ->where('id', $iduser)
+            ->update([
+                'email' => ''
+            ]);
         $this->validate($request,
             ['txtUserEmail' => 'unique:users,email'],
             ['txtUserEmail.unique'=> 'Email đã tồn tại']
@@ -96,5 +93,21 @@ class AdminUserController extends Controller
                 'name' => $name, 'email' => $email, 'level' => $level
             ]);
         return redirect()->route('getListUser')->with(['flash_mesage'=>'Sửa thành công']);
+    }
+    public function getAddUserAD()
+    {
+        return view('admin/adduser');
+    }
+    public function postAddUserAD(RegisterRequest $request)
+    {
+        $Name=$request->txtname;
+        $Password=Hash::make($request->txtPassword);
+        $Email=$request->txtEmail;
+        $level=$request->txtLevel;
+        $token=$request->_token;
+        DB::table('users')->insert([
+            'Name' => $Name, 'Email' => $Email,'Password' => $Password,  'level' =>$level,'remember_token'=>$token
+        ]);
+        return redirect()->route('getListUser')->with(['flash_mesage'=>'Thêm thành công']);
     }
 }
