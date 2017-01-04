@@ -23,7 +23,7 @@
                                         <a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Đăng xuất
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -32,7 +32,7 @@
                                     </li>
                                     <li class="col-sm-12">
                                         <a href="edit-account-{{Auth::user()->id}}">
-                                        Edit
+                                        Chỉnh sửa
                                         </a>
                                     </li>
                                 </ul>

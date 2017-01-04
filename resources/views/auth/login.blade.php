@@ -31,16 +31,16 @@
                                 <span>
                                     <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="remember"> Remember Me
+                                                <input type="checkbox" name="remember"> Ghi nhớ đăng nhập
                                             </label>
                                     </div>
 							    </span>
                                 <div>
-                                    <button type="submit" class=" btn-primary">Login</button>
+                                    <button type="submit" class=" btn-primary">Đăng nhập</button>
                                 </div>
                                 <br>
                                 <div>
-                                    <a  href="{{ url('/password/reset') }}">Forgot Your Password? </a>
+                                    <a  href="{{ url('/password/reset') }}">Quên mật khẩu? </a>
                                 </div>
                             </form>
                         </div><!--/login form-->

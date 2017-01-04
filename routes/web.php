@@ -45,15 +45,8 @@ Route::get('/index2', function () {
     $product = DB::table('products');
     var_dump($product);
 });
+
 //Product
-//Route::group(['prefix'=>'admin'],function (){
-//    Route::get('list',['as'=>'getList','uses'=>'AdminProductController@getList']);
-//    Route::get('addproduct',['as'=>'getaddproduct','uses'=>'AdminProductController@getAdd']);
-//    Route::post('addproduct',['as'=>'postaddproduct','uses'=>'AdminProductController@postAdd']);
-//    Route::get('deleteproduct/{idproduct}',['as'=>'getDelete','uses'=>'AdminProductController@getDelete']);
-//    Route::get('editproduct-{idproduct}',['as'=>'getEdit','uses'=>'AdminProductController@getEdit']);
-//    Route::post('editproduct-{idproduct}',['as'=>'postEdit','uses'=>'AdminProductController@postEdit']);
-//});
 Route::get('list',['as'=>'getList','uses'=>'AdminProductController@getList']);
 Route::get('addproduct',['as'=>'getaddproduct','uses'=>'AdminProductController@getAdd']);
 Route::post('addproduct',['as'=>'postaddproduct','uses'=>'AdminProductController@postAdd']);
