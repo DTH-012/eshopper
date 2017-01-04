@@ -18,7 +18,7 @@
                                     <input type="text" name= "proc" placeholder="Tên sản phẩm"/>
                                 </div>
                                 <div class="search_box col-sm-4">
-                                    <input type="text" name= "cat" placeholder="Tên mặt hàng"/>
+                                    <input type="text" name= "cat" placeholder="Tên loại hàng"/>
                                 </div>
                                 <div class="search_box col-sm-4">
                                     <input type="text" name= "brand" placeholder="Tên nhà sản xuất"/>
