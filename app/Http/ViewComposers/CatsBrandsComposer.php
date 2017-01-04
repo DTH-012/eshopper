@@ -14,8 +14,8 @@ use DB;
 class CatsBrandsComposer
 {
     public function cat(View $view){
-        $cat = DB::select("SELECT * FROM category;");
-        $brand = DB::select("SELECT * FROM brands;");
+        $cat = DB::select('SELECT * FROM category ;');
+        $brand = DB::select('SELECT * FROM brands;');
         $view->with(['cats' => $cat,'brands'=>$brand]);
     }
 }

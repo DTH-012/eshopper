@@ -12,19 +12,19 @@ class ProductDetailsController extends Controller
 {
     public function procDetails($idProducts)
     {
-        $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM brands;");
         $productname = DB::select("SELECT * FROM products;");
         $img = DB::select("SELECT * FROM image Where Product=$idProducts limit 3;");
         $product = DB::table('products')
+            ->join('category','products.Category','category.idCategory')
+            ->join('brands','products.Brand','brands.idBRANDS')
             ->where ('idProducts', $idProducts)
             ->get();
         $comment = DB::table('comment')
             ->where ('ID_Product', $idProducts)
             ->orderby('Time','DESC')
-            ->paginate(2);
+            ->paginate(5);
         $product_related = DB::select("select * from products where Category in (Select Category From products Where idProducts=5) and idProducts!=$idProducts ORDER BY RAND() limit 3;");
-        return view('product-details', ['products' => $product,'cats' => $cat, 'productnames' => $productname,'brands'=>$brand,'Images'=>$img,'products_related'=>$product_related,'comments'=>$comment]);
+        return view('product-details', ['products' => $product, 'productnames' => $productname,'Images'=>$img,'products_related'=>$product_related,'comments'=>$comment]);
     }
 
     //Comment

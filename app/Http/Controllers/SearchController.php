@@ -34,7 +34,7 @@ class SearchController extends Controller
         $product= DB::table('products')
             ->join ('category','products.Category','category.idCategory')
             ->join ('brands','products.Brand','brands.idBRANDS')
-            ->where ([['NamePD', 'like', '%'.$proc.'%'],['category.Name', 'like', '%'.$cat.'%'],['brands.BRANDName', 'like', '%'.$brand.'%']])
+            ->where ([['NamePD', 'like', '%'.$proc.'%'],['Price', '>=', $pricemin],['Price', '<=', $pricemax],['category.Name', 'like', '%'.$cat.'%'],['brands.BRANDName', 'like', '%'.$brand.'%']])
             ->paginate(9);
         return view('search',['products' => $product]);
     }

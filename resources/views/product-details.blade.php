@@ -11,6 +11,9 @@
 
                     <div class="col-sm-9 padding-right">
                         <div class="product-details"><!--product-details-->
+                            <div>
+                                @include('errors.error')
+                            </div>
                             <div class="col-sm-5">
                                 @foreach($products as $product)
                                 <div class="view-product">
@@ -38,7 +41,7 @@
                                     <p>Web ID: 1089772</p>
                                     <img src="images/product-details/rating.png" alt="" />
                                     <span>
-									<span>{{$product->Price}}</span>
+									<span>{{$product->Price}}$</span>
 									<label>{{$product->Quantity}}:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
@@ -46,9 +49,9 @@
 										+ Giỏ Hàng
 									</button>
 								    </span>
-                                    <p><b>Availability:</b> In Stock</p>
-                                    <p><b>Condition:</b> New</p>
-                                    <p><b>Brand:</b> E-SHOPPER</p>
+                                    <p><b>Chi tiết:</b>{{$product->DesFull}}</p>
+                                    <p><b>Loại hàng:</b> {{$product->Name}}</p>
+                                    <p><b>Nhãn hiệu:</b>{{$product->BRANDName}}</p>
                                     <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                                 </div><!--/product-information-->
                                 @endforeach
@@ -56,18 +59,15 @@
 
                         </div><!--/product-details-->
 
-                        <div>
-                            @include('errors.error')
-                        </div>
                         <div class="category-tab shop-details-tab"><!--category-tab-->
                             <div class="col-sm-12">
                                 <ul class="nav nav-tabs">
-                                    <li><a href="#comments" data-toggle="tab">Phản hồi (5)</a></li>
-                                    <li class="active"><a href="#reviews" data-toggle="tab">Gửi phản hồi</a></li>
+                                    <li class="active"><a href="#comments" data-toggle="tab">Phản hồi </a></li>
+                                    <li><a href="#reviews" data-toggle="tab">Gửi phản hồi</a></li>
                                 </ul>
                             </div>
                             <div class="tab-content">
-                                <div class="tab-pane fade" id="comments" >
+                                <div class="tab-pane fade active in" id="comments" >
                                     @foreach($comments as $comment)
                                     <div class="col-sm-1">
                                         <div class="thumbnail">
@@ -90,19 +90,11 @@
                                     @endforeach
                                     <div class="col-sm-12">
                                         <ul class="pagination">
-                                            @if($comments->currentPage() !=1)
-                                                <li><a href="{!! $comments->url($comments->currentPage()-1) !!}"><<</a> </li>
-                                            @endif
-                                            @for($i = 1; $i <= $comments->lastPage(); $i = $i+1)
-                                                <li class="{!! ($comments->currentPage() == $i) ? "active" : "" !!}"><a href="{!! $comments->url($i) !!}">{!! $i !!}</a> </li>
-                                            @endfor
-                                            @if($comments->currentPage() != $comments->lastPage())
-                                                <li><a href="{!! $comments->url($comments->currentPage()+1) !!}">>></a> </li>
-                                            @endif
+                                            {!! $comments->render() !!}
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade active in" id="reviews" >
+                                <div class="tab-pane fade" id="reviews" >
                                     <div class="col-sm-12">
                                         <ul>
                                             @if (Auth::guest())
@@ -133,15 +125,15 @@
                                         <p><b>Đánh giá của bạn</b></p>
 
                                         <form action="#" method="post">
-										<span>
-                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}"  />
-											<input type="text" name="txtname" placeholder="Họ tên"/>
-											<input type="email" name="txtemail" placeholder="Email"/>
-										</span>
-                                            <textarea name="txtcontent" placeholder="Phản hồi của bạn"></textarea>
-                                            <button type="submit" class="btn btn-default pull-right">
-                                                Gửi
-                                            </button>
+                                            <span>
+                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}"  />
+                                                <input type="text" name="txtname" placeholder="Họ tên"/>
+                                                <input type="email" name="txtemail" placeholder="Email"/>
+                                            </span>
+                                                <textarea name="txtcontent" placeholder="Phản hồi của bạn"></textarea>
+                                                <button type="submit" class="btn btn-default pull-right">
+                                                    Gửi
+                                                </button>
                                         </form>
                                     </div>
                                 </div>

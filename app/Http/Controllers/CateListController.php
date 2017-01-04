@@ -8,9 +8,6 @@ class CateListController extends Controller
 {
     public function catlist($idLoai)
     {
-        $cat = DB::select('select * from category');
-        $brand = DB::select("SELECT * FROM brands;");
-        $productname = DB::select("SELECT * FROM products;");
         $product = DB::table('products')
             ->join ('category','products.Category','category.idCategory')
             ->where ('products.Category', '=', $idLoai)
@@ -19,7 +16,7 @@ class CateListController extends Controller
         if($exists == null){
             return view('404');
         }
-        return view('category-list', ['cats' => $cat, 'products' => $product,'productnames' => $productname,'brands'=>$brand]);
+        return view('category-list',['products' => $product]);
     }
     public function category()
     {

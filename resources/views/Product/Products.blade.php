@@ -20,8 +20,6 @@
     </div>
 @endforeach
 </div>
-<div class="col-sm-12">
     <ul class="pagination">
         {!! $products->render() !!}
     </ul>
-</div>

@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\EditUserRequest;
 use Illuminate\Http\Request;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class AdminUserController extends Controller
@@ -17,6 +18,7 @@ class AdminUserController extends Controller
     public function getList()
     {
         $user = DB::table('users')
+            ->where('users.id','!=',Auth::user()->id)
             ->orderby('id','ASC')
             ->get();
         return view('admin.listuser',['users'=>$user]);
