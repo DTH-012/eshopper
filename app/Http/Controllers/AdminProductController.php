@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Http\Requests\ProcRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\CatRequest;
 use App\Http\Requests\BrandRequest;
 use DB;
-
 class AdminProductController extends Controller
 {
     public function __construct()
@@ -108,7 +105,6 @@ class AdminProductController extends Controller
     {
         return view('admin.index');
     }
-
     //Category
     public function getListCat()
     {
@@ -159,11 +155,10 @@ class AdminProductController extends Controller
         DB::table('category')
             ->where('category.idCategory', '=', $id)
             ->update([
-               'Name' => $name
+                'Name' => $name
             ]);
         return redirect()->route('getListCat')->with(['flash_mesage'=>'Sửa thành công']);
     }
-
     //Brand
     public function getListBrand()
     {
@@ -202,8 +197,8 @@ class AdminProductController extends Controller
     public function getEditBrand($idbrand)
     {
         $brand = DB::table('brands')
-        ->where('idBRANDS','=',$idbrand)
-        ->get();
+            ->where('idBRANDS','=',$idbrand)
+            ->get();
         return view('admin.editbrand', ['brands' => $brand]);
     }
     public function postEditBrand(Request $request,$idbrand){
