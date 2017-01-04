@@ -26,7 +26,7 @@ class EditUserRequest extends FormRequest
     {
         return [
             'txtUserName' => 'required',
-            'txtUserEmail' =>'required|unique:users,email',
+            'txtUserEmail' =>'required',
             'txtUserLevel' => 'required',
         ];
     }
@@ -35,7 +35,6 @@ class EditUserRequest extends FormRequest
         return [
             'txtUserName.required' => 'Vui lòng nhập họ tên',
             'txtUserEmail.required' => 'Vui lòng nhập email',
-            'txtUserEmail.unique' => 'Email đã tồn tại',
             'txtUserLevel.required' => 'Vui lòng nhập quyền hạn'
         ];
     }

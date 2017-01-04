@@ -77,13 +77,23 @@ class AdminUserController extends Controller
     }
     public function postEdit(EditUserRequest $request,$iduser)
     {
+        $tmpemail=$email=$request->txtUserEmail;
+        DB::table('users')
+        ->where('id', $iduser)
+        ->update([
+            'email' => ''
+        ]);
+        $this->validate($request,
+            ['txtUserEmail' => 'unique:users,email'],
+            ['txtUserEmail.unique'=> 'Email đã tồn tại']
+        );
         $name=$request->txtUserName;
-        $emal=$request->txtUserEmail;
+        $email=$request->txtUserEmail;
         $level=$request->txtUserLevel;
         DB::table('users')
             ->where('id', $iduser)
             ->update([
-                'name' => $name, 'email' => $emal, 'level' => $level
+                'name' => $name, 'email' => $email, 'level' => $level
             ]);
         return redirect()->route('getListUser')->with(['flash_mesage'=>'Sửa thành công']);
     }
