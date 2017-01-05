@@ -1,7 +1,7 @@
 @extends('admin.layouts.adminmainsame')
-@section('title', 'Thêm sản phẩm')
-@section('headername', 'Thêm sản phẩm')
-@section('breadcrumbname', 'Thêm sản phẩm')
+@section('title', 'Thêm loại sản phẩm')
+@section('headername', 'Thêm loại sản phẩm')
+@section('breadcrumbname', 'Thêm loại sản phẩm')
 @section('content')
     @include('errors.error')
     <form action="{!! route('getaddcat') !!}" method="POST">

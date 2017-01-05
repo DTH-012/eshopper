@@ -1,7 +1,7 @@
 @extends('admin.layouts.adminmainsame')
-@section('title', 'Sửa sản phẩm')
-@section('headername', 'Sửa sản phẩm')
-@section('breadcrumbname', 'Sửa sản phẩm')
+@section('title', 'Sửa loại sản phẩm')
+@section('headername', 'Sửa loại sản phẩm')
+@section('breadcrumbname', 'Sửa loại sản phẩm')
 @section('content')
     @include('errors.error')
     <form action="" method="POST">

@@ -13,9 +13,9 @@
                 <div class="mainmenu pull-left">
                     <ul class="nav navbar-nav collapse navbar-collapse">
                         @if (Auth::guest())
-                            @include('Menu.mainMenu')
+                            @include('Menu.MainMenu')
                         @elseif (Auth::user()->level==1)
-                            @include('Menu.mainMenu')
+                            @include('Menu.MainMenu')
                             @include('Menu.AdminMenu')
                         @endif
                     </ul>
